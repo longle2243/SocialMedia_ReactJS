@@ -7,6 +7,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
 var datalocal=[]
 
 export default function Userlist() {
@@ -29,22 +34,27 @@ export default function Userlist() {
     const filterdata=data.filter(user=>user.name===value)
     setsearch(filterdata)
     setvalue("")
+    console.log(filterdata);
   }
 
   return (
    <div>
-      <input type="text" placeholder="Search Name" value={value} onChange={savevalue} />
-      <button onClick={searchname}>Search</button>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography><input type="text" placeholder="Search Name" value={value} onChange={savevalue} /></Typography>
+          <Button color="inherit" onClick={searchname}>Search</Button>
+        </Toolbar>
+      </AppBar>
      <TableContainer component={Paper}>
       {
         data ?
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        <Table sx={{ minWidth: 650, maxWidth:1000, m:"auto" }} aria-label="simple table">
+        <TableHead >
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">UserName</TableCell>
-            <TableCell align="right">Email</TableCell>
-            <TableCell align="right">Phone</TableCell>
+            <TableCell sx={{color:"red",fontWeight: "bold"}}>Name</TableCell>
+            <TableCell sx={{color:"red",fontWeight: "bold"}} align="right">UserName</TableCell>
+            <TableCell sx={{color:"red",fontWeight: "bold"}} align="right">Email</TableCell>
+            <TableCell sx={{color:"red",fontWeight: "bold"}} align="right">Phone</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

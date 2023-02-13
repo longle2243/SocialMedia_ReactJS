@@ -24,20 +24,16 @@ export default function ListTodo() {
   return (
     <div>
       <Card sx={{ maxWidth: 345, m: "auto", mt: 5, boxShadow: 5 }}>
-        <CardActionArea>
           <CardContent>
-            <h1>Todo</h1>
-            <input type="text" placeholder="VIEC CAN LAM" value={value} onChange={savevalue} />
-            <Typography gutterBottom variant="h5" component="div"> <button onClick={savetodo}>Add</button></Typography>
+          <Typography variant="body2" color="text.secondary" ><h1>POST</h1></Typography>
+            <input type="text" placeholder="Write something ..." value={value} onChange={savevalue} />
+            <Typography gutterBottom variant="h5" component="div"> <button onClick={savetodo}>PUSH</button></Typography>
           </CardContent>
-        </CardActionArea>
       </Card>
       <Card sx={{ maxWidth: 345, m: "auto", mt: 5, boxShadow: 5 }}>
-        <CardActionArea>
           <CardContent>
             <Typography variant="body2" color="text.secondary" ><Todolist todolist={todo} /></Typography>
           </CardContent>
-        </CardActionArea>
       </Card>
     </div>
   )

@@ -5,11 +5,17 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const postshardcode = [{ id: 123, title: 'Post aaa', body: 'Description 123 ' }];
-var datapost=[];
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+
+const postshardcode = [{ id: 123, title: 'Loading...', body: 'Description 123 ' }];
+var datapost = [];
 
 const PostsList = ({ posts }) => {
   const [isHidden, setIsHidden] = useState(false);
@@ -23,12 +29,17 @@ const PostsList = ({ posts }) => {
           posts ?
             <div style={{ display: isHidden ? 'none' : 'block' }}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell sx={{color:"red",fontWeight: "bold"}}>NEW POST</TableCell>
+                  </TableRow>
+                </TableHead>
                 <TableBody>
                   {posts.map((post) => (
                     <TableRow
                       key={post.id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                      <TableCell component="th" scope="row"> <Link style={{ color: "green" , textDecoration: "none"}} to={{ pathname: `/posts/${post.id}`, state: { post } }} onClick={hiddendiv}>{post.title}</Link></TableCell>
+                      <TableCell component="th" scope="row"><h3>{post.id}</h3> <Link style={{ color: "blue", textDecoration: "none" }} to={{ pathname: `/post/${post.id}`, state: { post } }} onClick={hiddendiv}>{post.title}</Link></TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -44,19 +55,29 @@ const PostsDetail = () => {
   const routeParams = useParams();
   var post
 
-  if (datapost.length>0){
+  if (datapost.length > 0) {
     post = datapost.find(p => p.id === parseInt(routeParams.id));
-  }   
+  }
+  console.log(post.id);
   return (
     <div>
-      <h1>POSTS</h1>
-      <h3>{post.title}</h3>
-      <p>{post.body}</p>
+      <Card sx={{ maxWidth: 345, m: "auto", mt: 5, boxShadow: 5 }}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">{post.id}</Typography>
+        </CardContent>
+        <CardActionArea>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">{post.title}</Typography>
+            <Typography variant="body2" color="text.secondary">{post.body}</Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
     </div>
+
   );
 };
 
-export default function Posts(){
+export default function Posts() {
   const [data, setData] = useState(null);
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -65,7 +86,7 @@ export default function Posts(){
       .catch(error => console.error(error));
   }, []);
 
-  datapost=data
+  datapost = data
   return (
     <div className="admin-panel-container">
       <hr />

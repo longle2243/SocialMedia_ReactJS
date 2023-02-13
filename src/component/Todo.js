@@ -8,7 +8,7 @@ import { CardActionArea } from '@mui/material';
 export default function Todolist({todolist}) {
   return (
     <div>
-      <h1>List</h1>
+      <h1>MY POST</h1>
       {
         todolist.map((todo, index) => (<Todo todo={todo} key={index}/>))
       }

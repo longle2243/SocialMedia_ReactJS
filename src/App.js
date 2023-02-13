@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./component/Home";
 import ListTodo from "./component/Listtodo";
-import Product from "./component/Posts";
+import Posts from "./component/Posts";
 import GetDataApi from './component/getApi';
 import Userlist from './component/Userlist';
 
-export default function App() {
-  return (
-    <BrowserRouter>
+export default class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}>
           <Route index element={<ListTodo />} />
-          <Route path="posts/*" element={ <Product />} />
-          <Route path="api/" element={ <GetDataApi />} />
-          <Route path="user/" element={ <Userlist />} />
+          <Route path="post/*" element={ <Posts />} />
+          <Route path="account/" element={ <GetDataApi />} />
+          <Route path="friend/" element={ <Userlist />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  );
+    )
+  }
 }
-
