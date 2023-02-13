@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./component/Layout";
+import Home from "./component/Home";
 import ListTodo from "./component/Listtodo";
 import Product from "./component/Posts";
 import GetDataApi from './component/getApi';
