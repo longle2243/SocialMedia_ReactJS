@@ -6,6 +6,7 @@ import MyPost from "./component/MyPost";
 import Posts from "./component/Posts";
 import Account from './component/Account';
 import Friend from './component/Friend';
+import Chatbot from './component/Chatbot';
 
 export default class App extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class App extends Component {
           <Route path="post/*" element={ <Posts />} />
           <Route path="account/" element={ <Account />} />
           <Route path="friend/" element={ <Friend />} />
+          <Route path="chatbot/" element={ <Chatbot />} />
         </Route>
       </Routes>
     </BrowserRouter>

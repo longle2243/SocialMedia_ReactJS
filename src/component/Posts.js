@@ -39,7 +39,7 @@ const PostsList = ({ posts }) => {
                     <TableRow
                       key={post.id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                      <TableCell component="th" scope="row"><h3>{post.id}</h3> <Link style={{ color: "blue", textDecoration: "none" }} to={{ pathname: `/post/${post.id}`, state: { post } }} onClick={hiddendiv}>{post.title}</Link></TableCell>
+                      <TableCell component="th" scope="row"><h3 style={{color: "violet"}}>{post.id}</h3> <Link style={{ color: "blue", textDecoration: "none" }} to={{ pathname: `/post/${post.id}`, state: { post } }} onClick={hiddendiv}>{post.title}</Link></TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

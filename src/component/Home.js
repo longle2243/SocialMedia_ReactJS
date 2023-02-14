@@ -17,6 +17,7 @@ export default class Home extends Component {
           <Button color="inherit"><Link to="/post" style={{color: "white", textDecoration: "none"}}>Post</Link></Button>
           <Button color="inherit"><Link to="/friend" style={{color: "white", textDecoration: "none"}}>Friend</Link></Button>
           <Button color="inherit"><Link to="/account" style={{color: "white", textDecoration: "none"}}>Account</Link></Button>
+          <Button color="inherit"><Link to="/chatbot" style={{color: "white", textDecoration: "none"}}>ChatBot</Link></Button>
         </Toolbar>
       </AppBar>
       <Outlet />

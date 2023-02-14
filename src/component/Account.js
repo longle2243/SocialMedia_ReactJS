@@ -23,21 +23,18 @@ export default class Account extends Component {
   render() {
     return (
       <div>
-      {this.state.data ?
-        <div>
-          {this.state.data.map(todo => (
-            <Card sx={{ maxWidth: 345, m: "auto", mt: 5, boxShadow: 5 }}>
-              <CardMedia sx={{ height: 240 }} image={todo.url}/>
-              <CardActionArea>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">{todo.id}</Typography>
-                  <Typography variant="body2" color="text.secondary" key={todo.id}>{todo.title}</Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          ))}
-        </div> : <p>Loading...</p>}
-    </div>
+        {this.state.data.map(todo => (
+          <Card sx={{ maxWidth: 345, m: "auto", mt: 5, boxShadow: 5 }}>
+            <CardMedia sx={{ height: 240 }} image={todo.url} />
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">{todo.id}</Typography>
+                <Typography variant="body2" color="text.secondary" key={todo.id}>{todo.title}</Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        ))}
+      </div>
     )
   }
 }
