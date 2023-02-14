@@ -1,30 +1,33 @@
-import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 
-export default function GetDataApi() {
-  const [data, setData] = useState(null);
+import React, { Component } from 'react'
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/photos')
-      .then(response => response.json())
-      .then(data => setData(data))
-      .catch(error => console.error(error));
-  }, []);
+export default class Account extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: [] };
+  }
 
-  return (
-    <div>
-      {data ?
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/photos")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ data: data });
+      });
+  }
+
+  render() {
+    return (
+      <div>
+      {this.state.data ?
         <div>
-          {data.map(todo => (
+          {this.state.data.map(todo => (
             <Card sx={{ maxWidth: 345, m: "auto", mt: 5, boxShadow: 5 }}>
-              <CardMedia
-                sx={{ height: 240 }}
-                image={todo.url}
-              />
+              <CardMedia sx={{ height: 240 }} image={todo.url}/>
               <CardActionArea>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">{todo.id}</Typography>
@@ -33,8 +36,8 @@ export default function GetDataApi() {
               </CardActionArea>
             </Card>
           ))}
-          
         </div> : <p>Loading...</p>}
     </div>
-  );
+    )
+  }
 }

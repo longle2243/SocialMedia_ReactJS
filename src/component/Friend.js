@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,42 +11,54 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
+import React, { Component } from 'react'
+
 var datalocal=[]
 
-export default function Userlist() {
-  const [data,setData]= useState(null)  
-  useEffect(()=>{
-      fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response=>response.json())
-      .then(data=>setData(data))
-      .catch(error=> console.error(error))
-    },[])
-  
-  const [value, setvalue] = useState("")
-  const [search, setsearch] = useState("")
+export default class Friend extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      data: [],
+      value: "",
+      search: []
+    };
 
-  const savevalue = (e) => {
-    setvalue(e.target.value)
+    this.savevalue = this.savevalue.bind(this);
+    this.searchname = this.searchname.bind(this);
   }
 
-  const searchname = (e) => {
-    const filterdata=data.filter(user=>user.name===value)
-    setsearch(filterdata)
-    setvalue("")
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ data: data });
+      });
+  }
+
+  savevalue(e){
+    this.setState({value: e.target.value})
+  }
+
+  searchname(){
+    const filterdata=this.state.data.filter(user=>user.name===this.state.value)
+    this.setState({search: filterdata})
+    this.setState({value: ""})
     console.log(filterdata);
   }
 
-  return (
-   <div>
+  render() {
+    return (
+      <div>
       <AppBar position="static">
         <Toolbar>
-          <Typography><input type="text" placeholder="Search Name" value={value} onChange={savevalue} /></Typography>
-          <Button color="inherit" onClick={searchname}>Search</Button>
+          <Typography><input type="text" placeholder="Search Name" value={this.state.value} onChange={this.savevalue} /></Typography>
+          <Button color="inherit" onClick={this.searchname}>Search</Button>
         </Toolbar>
       </AppBar>
      <TableContainer component={Paper}>
       {
-        data ?
+        this.state.data ?
         <Table sx={{ minWidth: 650, maxWidth:1000, m:"auto" }} aria-label="simple table">
         <TableHead >
           <TableRow>
@@ -58,7 +69,7 @@ export default function Userlist() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((data) => (
+          {this.state.data.map((data) => (
             <TableRow
               key={data.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -73,5 +84,6 @@ export default function Userlist() {
       }
     </TableContainer>
    </div>
-  );
+    )
+  }
 }

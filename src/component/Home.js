@@ -19,7 +19,6 @@ export default class Home extends Component {
           <Button color="inherit"><Link to="/account" style={{color: "white", textDecoration: "none"}}>Account</Link></Button>
         </Toolbar>
       </AppBar>
-
       <Outlet />
     </Box>
     )
